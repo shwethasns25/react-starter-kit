@@ -8,7 +8,6 @@ const DEBUG = process.env.NODE_ENV !== 'production'
 
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 const config = {
   devtool: DEBUG ? 'eval' : false,
   entry: [
@@ -68,16 +67,17 @@ const config = {
       },
       {
         test    : /(\.scss|\.css)$/,
-        include : /react-toolbox/,
-        loader: DEBUG ? 'style!css?sourceMap!sass?sourceMap' : ExtractTextPlugin.extract('style', 'css!sass'),
+        loader: DEBUG ? 'style!css?sourceMap&modules!sass?sourceMap&modules' : ExtractTextPlugin.extract('style', 'css!sass'),
       }
     ]
   },
   postcss: [autoprefixer],
   sassLoader: {
-    data: '@import "config";',
-    includePaths: [path.resolve(__dirname, "./src/styles")]
-  }
+    data: '@import "./src/styles/_config.scss";',
+    includePaths: [path.resolve(__dirname, './src/styles')]
+  },
+
+
 }
 
 if (DEBUG) {
