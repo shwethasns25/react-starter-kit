@@ -7,8 +7,8 @@ module.exports = storybookBaseConfig =>
     module: Object.assign({}, storybookBaseConfig.module, {
       loaders: storybookBaseConfig.module.loaders.concat(baseConfig.module.loaders),
     }),
-    sassLoader: {
-      data: '@import "config";',
-      includePaths: [path.resolve(__dirname, "../src/styles")]
-    }
+     sassLoader: {
+      data: '@import "./src/styles/_config.scss";',
+      includePaths: [path.resolve(__dirname, '../src/styles')]
+    },
   })
